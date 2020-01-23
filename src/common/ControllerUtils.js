@@ -1,13 +1,14 @@
-import _isNumber from 'lodash/fp/isNumber';
-import Logger from './Logger';
+const _isNumber = require('lodash/fp/isNumber');
+const Logger = require('./Logger');
+const ApiError = require('./ApiError');
 
-const useController = async (context, controllerFn) => {
+exports.useController = async (context, controllerFn) => {
   context.data = { ...context.request.body, ...context.params, ...context.query };
   if (context.headers.authorization) {
     context.token = context.headers.authorization.split('Bearer ')[1];
   }
   try {
-    logger.info(`Executing controller ${controllerFn.name}`, { tags: 'controller' });
+    Logger.info(`Executing controller ${controllerFn.name}`, { tags: 'controller' });
     const result = await controllerFn(context);
     if (result) {
       if (result.status && _isNumber(result.status)) {
@@ -19,11 +20,11 @@ const useController = async (context, controllerFn) => {
     }
     return result;
   } catch (err) {
-    return handleError(err, context);
+    return this.handleError(err, context);
   }
 };
 
-const handleError = (error, context) => {
+exports.handleError = (error, context) => {
   let message = 'Unhandled Error';
   let status = 500;
   let extra = {};
@@ -81,6 +82,4 @@ const handleError = (error, context) => {
     status,
     extra,
   };
-}
-
-export { useController, handleError };
+};

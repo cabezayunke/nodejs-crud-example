@@ -1,4 +1,5 @@
-import { createLogger, format, transports } from 'winston';
+const winston = require('winston');
+const { createLogger, format, transports } = winston;
 const { combine, timestamp, prettyPrint } = format;
 
 // more details in dev
@@ -34,7 +35,7 @@ const transformLogDetails = (extra) => {
   return result;
 };
 
-export default {
+const Logger = {
   debug: (message, extra = {}) => winstonLogger.debug(message, transformLogDetails(extra)),
   log: (message, extra = {}) => winstonLogger.info(message, transformLogDetails(extra)),
   info: (message, extra = {}) => winstonLogger.info(message, transformLogDetails(extra)),
@@ -42,3 +43,4 @@ export default {
   error: (message, extra = {}) => winstonLogger.error(message, transformLogDetails(extra)),
   addTag,
 };
+module.exports = Logger;

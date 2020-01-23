@@ -1,10 +1,10 @@
-import Koa from 'koa';
-import bodyParser from 'koa-bodyparser';
-import cors from '@koa/cors';
-import helmet from 'koa-helmet';
-import { handleError } from './ControllerUtils';
+const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+const cors = require('@koa/cors');
+const helmet = require('koa-helmet');
+const { handleError } = require('./ControllerUtils');
 
-export default (router) => {
+const App = (router) => {
   const app = new Koa();
   app.use(cors());
   app.use(helmet());
@@ -29,3 +29,4 @@ export default (router) => {
   app.use(router.allowedMethods());
   return app;
 };
+module.exports = App;

@@ -1,7 +1,10 @@
-import App from './common/App'
-import { useController } from './common/ControllerUtils'
-import BlogPostValidation from './blogposts/BlogPostValidation'
-import BlogPostController from './blogposts/BlogPostController'
+const Koa2JoiValidate = require('koa2-joi-validate');
+const Router = require('koa-router');
+const App = require('./common/App');
+const Logger = require('./common/Logger');
+const { useController } = require('./common/ControllerUtils');
+const BlogPostValidation = require('./blogposts/BlogPostValidation');
+const BlogPostController = require('./blogposts/BlogPostController');
 
 const validator = Koa2JoiValidate({
   passError: true, // NOTE: this tells the module to pass the error along for you
