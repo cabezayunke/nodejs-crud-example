@@ -1,6 +1,6 @@
 
 const BlogPostService = {
-  getBlogPosts: (context) => {},
+  getBlogPost: (context) => {},
   createBlogPost: (context) => {},
   updateBlogPost: (context) => {},
   deleteBlogPost: (context) => {},

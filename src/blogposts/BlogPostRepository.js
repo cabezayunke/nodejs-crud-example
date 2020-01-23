@@ -1,8 +1,9 @@
+const BlogPostModel = require('./BlogPostModel');
 
 const BlogPostRepository = {
-  getBlogPosts: (context) => {},
-  createBlogPost: (context) => {},
-  updateBlogPost: (context) => {},
-  deleteBlogPost: (context) => {},
+  getBlogPost: (id) => BlogPostModel.findById(id),
+  createBlogPost: (blogPost) => new BlogPostModel(blogPost),
+  updateBlogPost: (id, blogPost) => BlogPostModel.findOneAndUpdate({ _id: id, }, { ...blogPost }),
+  deleteBlogPost: (id) => BlogPostModel.findById(id).remove(),
 };
 module.exports = BlogPostRepository;
