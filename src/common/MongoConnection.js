@@ -5,37 +5,38 @@ const Logger = require('./Logger');
 const MongoConnection = {
   create: function (config) {
     const db = mongoose.connection;
+    const tags = { tags: 'init,mongodb' };
     db.on('connecting', () => {
-      Logger.log('connecting to MongoDB...')
+      Logger.log(`connecting to mongodb://${config.host}:${config.port}/${config.database}`, tags);
     });
     db.on('error', (error) => {
-      Logger.error('Error in MongoDb connection: ', error);
+      Logger.error('Error in MongoDb connection: ' + error.toString(), { ...tags, error });
     });
     db.on('connected', () => {
-      Logger.log('MongoDB connected!')
+      Logger.log('MongoDB connected!', tags);
     });
     db.once('open', () => {
-      Logger.log('MongoDB connection opened!')
+      Logger.log('MongoDB connection opened!', tags);
     });
     db.on('reconnected', () => {
-      Logger.log('MongoDB reconnected!')
+      Logger.log('MongoDB reconnected!', tags);
     });
     db.on('disconnected', () => {
-      Logger.log('MongoDB disconnected!')
+      Logger.log('MongoDB disconnected!', tags);
     });
 
     // mongoose debug
-    if(process.env.NODE_ENV !== 'prod') {
+    if(process.env.NODE_ENV !== 'production') {
       mongoose.set('debug', true)
     }
 
     return mongoose.connect(
-      `mongodb://${config.mongo.connection}:${config.mongo.port}/${config.mongo.database}`,
+      `mongodb://${config.host}:${config.port}/${config.database}`,
       {
         native_parser: true,
-        user: config.mongo.username,
-        pass: config.mongo.password,
-        ssl: config.mongo.sslSupport,
+        user: config.user,
+        pass:config.password,
+        ssl: config.sslSupport,
         sslValidate: false,
         autoReconnect: true, // reconnect on error
         reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect

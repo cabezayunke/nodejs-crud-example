@@ -17,14 +17,14 @@ const winstonLogger = createLogger({
 // turned off in test
 winstonLogger.transports[0].silent = process.env.LOGS_DISABLED;
 
-// helpers
+// helpersß
 const addTag = (tags, newTag) => {
   tags = tags || '';
   tags += tags.length ? `,${newTag}` : newTag;
   return tags;
 };
 const transformLogDetails = (extra) => {
-  let result = {
+  const result = {
     ...extra,
   };
   if (result.status >= 500) {
