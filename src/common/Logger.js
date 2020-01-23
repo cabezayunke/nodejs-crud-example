@@ -1,4 +1,4 @@
-import { createLogger, format } from 'winston';
+import { createLogger, format, transports } from 'winston';
 const { combine, timestamp, prettyPrint } = format;
 
 // more details in dev
@@ -9,7 +9,7 @@ const winstonLogger = createLogger({
   level,
   format: combine(timestamp(), prettyPrint()),
   transports: [
-    new winston.transports.Console()
+    new transports.Console()
   ],
 });
 

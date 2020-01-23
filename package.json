@@ -1,0 +1,50 @@
+{
+  "name": "nodejs-crud-example",
+  "version": "1.0.0",
+  "description": "Simple CRUD REST API using NodeJS",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "serve": "node dist/main.bundle.js",
+    "watch": "webpack --mode=development --watch",
+    "start": "webpack-dev-server --mode=development --open",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cabezayunke/nodejs-crud-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cabezayunke/nodejs-crud-example/issues"
+  },
+  "homepage": "https://github.com/cabezayunke/nodejs-crud-example#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.8.3",
+    "@koa/cors": "^3.0.0",
+    "joi": "^14.3.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^5.2.0",
+    "koa-router": "^8.0.6",
+    "koa2-joi-validate": "^0.5.0",
+    "lodash": "^4.17.15",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "jest": "^25.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
