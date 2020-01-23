@@ -1,9 +1,18 @@
-describe('BlogPostController', () => {
+const HttpStatus = require('http-status-codes');
+const request = require('supertest');
+const App = require('../../src/common/App');
+const BlogPostRouter = require('../../src/blogposts/BlogPostRouter');
+
+describe('BlogPostRouter', () => {
+  let app;
+  beforeAll(async () => {
+    app = App(BlogPostRouter);
+  });
   test('should return blog post if exists', async () => {
 
   });
   test('should throw not found error when trying to fetch blog post that does not exist', async () => {
-
+    await request(app.listen()).get('/api/v1/blogposts/1').expect(HttpStatus.NOT_FOUND);
   });
   test('should create a blog post with valid data', async () => {
 

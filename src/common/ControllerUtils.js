@@ -1,4 +1,5 @@
 const _isNumber = require('lodash/fp/isNumber');
+const _isArray = require('lodash/fp/isArray');
 const Logger = require('./Logger');
 const ApiError = require('./ApiError');
 
@@ -66,7 +67,8 @@ exports.handleError = (error, context) => {
       stack: error.stack ? error.stack.split('\n') : [],
     };
   }
-  Logger.error(error.message, { tags: 'error', error });
+  error.tags = Logger.addTag(error.tags, 'error');
+  Logger.error(error.message, error);
 
   // koa handling
   if (context) {

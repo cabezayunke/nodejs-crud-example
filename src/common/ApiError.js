@@ -26,5 +26,9 @@ class ApiError extends Error {
   static forbidden(message, extra) {
     return new ApiError(message, HttpStatus.FORBIDDEN, extra);
   }
+
+  static internal(message, extra) {
+    return new ApiError(message, HttpStatus.INTERNAL_SERVER_ERROR, extra);
+  }
 }
 module.exports = ApiError;

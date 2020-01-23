@@ -27,7 +27,12 @@ const MongoConnection = {
 
     // mongoose debug
     if(process.env.NODE_ENV !== 'production') {
-      mongoose.set('debug', true)
+      mongoose.set('debug', (coll, method, query, doc, options) =>
+        Logger.debug(
+          `${coll}.${method}(${JSON.stringify(query)}): ${JSON.stringify(doc)}`,
+          { tags: 'mongodb,mongoose' }
+        )
+      )
     }
 
     return mongoose.connect(
