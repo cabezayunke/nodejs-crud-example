@@ -1,6 +1,6 @@
 const BlogPostModel = require('./BlogPostModel')
 
-const BlogPostRepository = {
+const BlogPostDAO = {
   getBlogPost: async (id) => BlogPostModel.findById(id).lean(),
   createBlogPost: async (blogPost) => {
     const newModel = new BlogPostModel(blogPost)
@@ -17,4 +17,4 @@ const BlogPostRepository = {
     return true
   },
 }
-module.exports = BlogPostRepository
+module.exports = BlogPostDAO

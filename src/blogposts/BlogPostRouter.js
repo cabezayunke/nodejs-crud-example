@@ -1,9 +1,9 @@
 const Router = require('koa-router')
 const { useController } = require('../common/ControllerUtils')
-const BlogPostRepository = require('./BlogPostRepository')
+const BlogPostDAO = require('./BlogPostDAO')
 const BlogPostValidator = require('./BlogPostValidator')
 const BlogPostService = require('./BlogPostService')({
-  repository: BlogPostRepository,
+  dao: BlogPostDAO,
   validator: BlogPostValidator,
 })
 
