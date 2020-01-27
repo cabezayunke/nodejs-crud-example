@@ -4,7 +4,7 @@ const mandatoryBlogPostId = Joi.object({
   id: Joi.string().required(),
 })
 const mandatoryBlogPostFields = Joi.object({
-  title: Joi.string().required(),
+  title: Joi.string().required().min(10),
   body: Joi.string().required(),
 })
 const BlogPostValidation = {
