@@ -1,10 +1,10 @@
-const BlogPostRepository = require('./BlogPostRepository')
+const BlogPostDAO = require('./BlogPostDAO')
 const ApiError = require('../common/ApiError')
 
 const BlogPostService = {
   getBlogPost: async (id) => {
     // some logic here
-    const blogPost = await BlogPostRepository.getBlogPost(id)
+    const blogPost = await BlogPostDAO.getBlogPost(id)
     if(!blogPost) {
       throw ApiError.notFound('Blog post not found')
     }
@@ -13,7 +13,7 @@ const BlogPostService = {
   },
   createBlogPost: async (data) => {
     // some logic here
-    const blogPost = await BlogPostRepository.createBlogPost(data)
+    const blogPost = await BlogPostDAO.createBlogPost(data)
     if(!blogPost) {
       throw ApiError.internal('Blog post could not be created')
     }
@@ -22,13 +22,13 @@ const BlogPostService = {
   },
   updateBlogPost: async ({ id, title, name }) => {
     // some logic here
-    const blogPost = await BlogPostRepository.updateBlogPost(id, { title, name })
+    const blogPost = await BlogPostDAO.updateBlogPost(id, { title, name })
     if(!blogPost) {
       throw ApiError.internal('Blog post could not be updated')
     }
     // more logic here
     return blogPost
   },
-  deleteBlogPost: (id) => BlogPostRepository.deleteBlogPost(id)
+  deleteBlogPost: (id) => BlogPostDAO.deleteBlogPost(id)
 }
 module.exports = BlogPostService
