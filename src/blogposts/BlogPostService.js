@@ -36,6 +36,7 @@ const deleteBlogPostBuilder = ({ dao, validator }) => async (id) => {
   if(!result) {
     throw ApiError.notFound('Blog post not found')
   }
+  return true;
 }
 
 const BlogPostService = (dependencies) => ({

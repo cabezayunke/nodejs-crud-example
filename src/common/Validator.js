@@ -7,5 +7,6 @@ module.exports = {
     if(result.error !== null) {
       throw ApiError.badRequest('ValidationError', { error: result.error.message })
     }
+    return true;
   }
 }
