@@ -1,34 +1,34 @@
-var HttpStatus = require('http-status-codes');
+var HttpStatus = require('http-status-codes')
 
 class ApiError extends Error {
   constructor(message, status = HttpStatus.BAD_REQUEST, extra = {}) {
-    super(message);
-    this.status = status;
-    this.extra = extra;
+    super(message)
+    this.status = status
+    this.extra = extra
   }
 
   static badRequest(message, extra) {
-    return new ApiError(message, HttpStatus.BAD_REQUEST, extra);
+    return new ApiError(message, HttpStatus.BAD_REQUEST, extra)
   }
 
   static notFound(message, extra) {
-    return new ApiError(message, HttpStatus.NOT_FOUND, extra);
+    return new ApiError(message, HttpStatus.NOT_FOUND, extra)
   }
 
   static conflict(message, extra) {
-    return new ApiError(message, HttpStatus.CONFLICT, extra);
+    return new ApiError(message, HttpStatus.CONFLICT, extra)
   }
 
   static unauthorized(message, extra) {
-    return new ApiError(message, HttpStatus.UNAUTHORIZED, extra);
+    return new ApiError(message, HttpStatus.UNAUTHORIZED, extra)
   }
 
   static forbidden(message, extra) {
-    return new ApiError(message, HttpStatus.FORBIDDEN, extra);
+    return new ApiError(message, HttpStatus.FORBIDDEN, extra)
   }
 
   static internal(message, extra) {
-    return new ApiError(message, HttpStatus.INTERNAL_SERVER_ERROR, extra);
+    return new ApiError(message, HttpStatus.INTERNAL_SERVER_ERROR, extra)
   }
 }
-module.exports = ApiError;
+module.exports = ApiError

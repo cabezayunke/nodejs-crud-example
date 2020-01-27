@@ -1,29 +1,29 @@
-'use strict';
-const mongoose = require('mongoose');
-const Logger = require('./Logger');
+'use strict'
+const mongoose = require('mongoose')
+const Logger = require('./Logger')
 
 const MongoConnection = {
-  create: function (config) {
-    const db = mongoose.connection;
-    const tags = { tags: 'init,mongodb' };
+  create: async (config) => {
+    const db = mongoose.connection
+    const tags = { tags: 'init,mongodb' }
     db.on('connecting', () => {
-      Logger.log(`connecting to mongodb://${config.host}:${config.port}/${config.database}`, tags);
-    });
+      Logger.log(`connecting to mongodb://${config.host}:${config.port}/${config.database}`, tags)
+    })
     db.on('error', (error) => {
-      Logger.error('Error in MongoDb connection: ' + error.toString(), { ...tags, error });
-    });
+      Logger.error('Error in MongoDb connection: ' + error.toString(), { ...tags, error })
+    })
     db.on('connected', () => {
-      Logger.log('MongoDB connected!', tags);
-    });
+      Logger.log('MongoDB connected!', tags)
+    })
     db.once('open', () => {
-      Logger.log('MongoDB connection opened!', tags);
-    });
+      Logger.log('MongoDB connection opened!', tags)
+    })
     db.on('reconnected', () => {
-      Logger.log('MongoDB reconnected!', tags);
-    });
+      Logger.log('MongoDB reconnected!', tags)
+    })
     db.on('disconnected', () => {
-      Logger.log('MongoDB disconnected!', tags);
-    });
+      Logger.log('MongoDB disconnected!', tags)
+    })
 
     // mongoose debug
     if(process.env.NODE_ENV !== 'production') {
@@ -39,11 +39,11 @@ const MongoConnection = {
       `mongodb://${config.host}:${config.port}/${config.database}`,
       {
         user: config.user,
-        pass:config.password,
+        pass: config.password,
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }
     )
   }
-};
-module.exports = MongoConnection;
+}
+module.exports = MongoConnection

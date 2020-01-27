@@ -1,34 +1,34 @@
-const BlogPostRepository = require('./BlogPostRepository');
-const ApiError = require('../common/ApiError');
+const BlogPostRepository = require('./BlogPostRepository')
+const ApiError = require('../common/ApiError')
 
 const BlogPostService = {
   getBlogPost: async (id) => {
     // some logic here
-    const blogPost = await BlogPostRepository.getBlogPost(id);
+    const blogPost = await BlogPostRepository.getBlogPost(id)
     if(!blogPost) {
-      throw ApiError.notFound('Blog post not found');
+      throw ApiError.notFound('Blog post not found')
     }
     // more logic here
-    return blogPost;
+    return blogPost
   },
   createBlogPost: async (data) => {
     // some logic here
-    const blogPost = await BlogPostRepository.createBlogPost(data);
+    const blogPost = await BlogPostRepository.createBlogPost(data)
     if(!blogPost) {
-      throw ApiError.internal('Blog post could not be created');
+      throw ApiError.internal('Blog post could not be created')
     }
     // more logic here
-    return blogPost;
+    return blogPost
   },
   updateBlogPost: async ({ id, title, name }) => {
     // some logic here
-    const blogPost = await BlogPostRepository.updateBlogPost(id, { title, name });
+    const blogPost = await BlogPostRepository.updateBlogPost(id, { title, name })
     if(!blogPost) {
-      throw ApiError.internal('Blog post could not be updated');
+      throw ApiError.internal('Blog post could not be updated')
     }
     // more logic here
-    return blogPost;
+    return blogPost
   },
   deleteBlogPost: (id) => BlogPostRepository.deleteBlogPost(id)
-};
-module.exports = BlogPostService;
+}
+module.exports = BlogPostService

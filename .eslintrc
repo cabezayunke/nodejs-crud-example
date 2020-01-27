@@ -17,7 +17,7 @@
   "env": {
     "es6": true,
     "node": true,
-    "jest": true
+    "jest/globals": true
   },
   "parserOptions": {
     "sourceType": "module",
@@ -41,11 +41,6 @@
     "standard/array-bracket-even-spacing": 0,
     "standard/computed-property-even-spacing": 0,
     "standard/object-curly-even-spacing": 0,
-    "node/no-unsupported-features/es-syntax": [
-      "error",
-      {
-        "ignores": ["modules"]
-      }
-    ]
+    "node/no-unsupported-features/es-syntax": 2
   }
 }

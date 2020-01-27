@@ -1,7 +1,7 @@
 'use strict';
 const uuidv4 = require('uuid/v4')
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const BlogPostSchema = new Schema({
     _id: {
