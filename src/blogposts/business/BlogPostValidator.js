@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const Validator = require('../common/Validator')
+const Validator = require('../../common/Validator')
 
 const mandatoryBlogPostId = Joi.string().required()
 const mandatoryBlogPostFields = Joi.object({
@@ -10,7 +10,7 @@ const mandatoryBlogPostFields = Joi.object({
 const BlogPostValidator = {
   validateBlogPostId: (id) => Validator.validate(id, mandatoryBlogPostId),
   validateBlogPostFields: (data) =>   Validator.validate(data, mandatoryBlogPostFields),
-  validateBlogPostUpdate: (id, data) => {
+  validateBlogPostUpdate: ({ id, ...data }) => {
     Validator.validate(id, mandatoryBlogPostId)
     Validator.validate(data, mandatoryBlogPostFields)
   },

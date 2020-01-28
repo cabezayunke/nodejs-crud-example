@@ -14,7 +14,7 @@ const BlogPostValidatorSpy = {
     invocations.validateBlogPostFields++
     return true
   },
-  validateBlogPostUpdate: (id, data) => {
+  validateBlogPostUpdate: (data) => {
     invocations.validateBlogPostUpdate++
     return true
   },

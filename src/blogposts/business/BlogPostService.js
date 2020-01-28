@@ -1,38 +1,38 @@
-const ApiError = require('../common/ApiError')
+const ApiError = require('../../common/ApiError')
 
-const getBlogPostBuilder = ({ dao, validator }) => async (id) => {
+const getBlogPostBuilder = ({ repository, validator }) => async (id) => {
   validator.validateBlogPostId(id)
   // some logic here
-  const blogPost = await dao.getBlogPost(id)
+  const blogPost = await repository.find(id)
   if(!blogPost) {
     throw ApiError.notFound('Blog post not found')
   }
   // more logic here
   return blogPost
 }
-const createBlogPostBuilder = ({ dao, validator }) => async (data) => {
+const createBlogPostBuilder = ({ repository, validator }) => async (data) => {
   validator.validateBlogPostFields(data)
   // some logic here
-  const blogPost = await dao.createBlogPost(data)
+  const blogPost = await repository.save(data)
   if(!blogPost) {
     throw ApiError.internal('Blog post could not be created')
   }
   // more logic here
   return blogPost
 }
-const updateBlogPostBuilder = ({ dao, validator }) => async ({ id, title, body }) => {
-  validator.validateBlogPostUpdate(id, { title, body })
+const updateBlogPostBuilder = ({ repository, validator }) => async (data) => {
+  validator.validateBlogPostUpdate(data)
   // some logic here
-  const blogPost = await dao.updateBlogPost(id, { title, body })
+  const blogPost = await repository.save(data)
   if(!blogPost) {
     throw ApiError.notFound('Blog post not found')
   }
   // more logic here
   return blogPost
 }
-const deleteBlogPostBuilder = ({ dao, validator }) => async (id) => {
+const deleteBlogPostBuilder = ({ repository, validator }) => async (id) => {
   validator.validateBlogPostId(id)
-  const result = await dao.deleteBlogPost(id)
+  const result = await repository.remove(id)
   if(!result) {
     throw ApiError.notFound('Blog post not found')
   }

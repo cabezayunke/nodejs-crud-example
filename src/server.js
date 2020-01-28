@@ -1,7 +1,7 @@
 const App = require('./common/App')
 const MongoConnection = require('./common/MongoConnection')
 const Logger = require('./common/Logger')
-const BlogPostRouter = require('./blogposts/BlogPostRouter')
+const BlogPostRouter = require('./blogposts/http/BlogPostRouter')
 
 // db connection
 MongoConnection.create(require('../config/database'))

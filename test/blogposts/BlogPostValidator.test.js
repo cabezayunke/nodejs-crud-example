@@ -1,4 +1,4 @@
-const BlogPostValidator = require('../../src/blogposts/BlogPostValidator')
+const BlogPostValidator = require('../../src/blogposts/business/BlogPostValidator')
 
 describe('BlogPostValidator', () => {
 

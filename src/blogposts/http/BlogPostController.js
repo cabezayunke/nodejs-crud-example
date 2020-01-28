@@ -1,4 +1,4 @@
-const dependencies = require('./dependencies')
+const dependencies = require('../dependencies')
 
 // create routes
 const blogPostControllerBuilder = ({ service }) => ({

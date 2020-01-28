@@ -4,7 +4,7 @@ const supertest = require('supertest')
 const MongoConnection = require('../../src/common/MongoConnection')
 const dbConfig = require('../../config/database')
 const App = require('../../src/common/App')
-const BlogPostRouter = require('../../src/blogposts/BlogPostRouter')
+const BlogPostRouter = require('../../src/blogposts/http/BlogPostRouter')
 const { blogPostsUp, blogPostsDown } = require('../fixtures/blogposts')
 
 describe('BlogPostRouter', () => {
@@ -21,7 +21,7 @@ describe('BlogPostRouter', () => {
   })
   afterEach(async () => expect.hasAssertions())
 
-  test('should throw not found error when trying to fetch blog post that does not exist', async () => {
+  test.only('should throw not found error when trying to fetch blog post that does not exist', async () => {
     const res = await request.get('/api/v1/blogposts/1')
     expect(res.status).toEqual(HttpStatus.NOT_FOUND)
   })

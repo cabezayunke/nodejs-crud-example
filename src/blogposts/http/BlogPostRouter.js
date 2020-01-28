@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const { useController } = require('../common/ControllerUtils')
+const { useController } = require('../../common/ControllerUtils')
 const BlogPostController = require('./BlogPostController')
 
 const router = new Router({ prefix: '/api/v1/blogposts' })

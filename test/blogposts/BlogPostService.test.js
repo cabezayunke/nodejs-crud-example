@@ -1,5 +1,5 @@
-const BlogPostService = require('../../src/blogposts/BlogPostService')
-const BlogPostValidator = require('../../src/blogposts/BlogPostValidator')
+const BlogPostService = require('../../src/blogposts/business/BlogPostService')
+const BlogPostValidator = require('../../src/blogposts/business/BlogPostValidator')
 const BlogPostValidatorSpy = require('../helpers/BlogPostValidatorSpy')
 const BlogPostDAOStub = require('../helpers/BlogPostDAOStub')
 
