@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const Validator = require('../../common/Validator')
+const Validator = require('../../common/utils/Validator')
 
 const mandatoryBlogPostId = Joi.string().required()
 const mandatoryBlogPostFields = Joi.object({

@@ -1,4 +1,4 @@
-const ApiError = require('../../common/ApiError')
+const ApiError = require('../../common/utils/ApiError')
 
 const getBlogPostBuilder = ({ repository, validator }) => async (id) => {
   validator.validateBlogPostId(id)

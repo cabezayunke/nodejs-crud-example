@@ -36,11 +36,11 @@ Check v0/simple-api branch.
 > - DB Model (connects to DB)
 >
 
-**PROS:**
+**CHANGES:**
 
 * Separate responsibilities in different layers, decoupling the business logic from the controllers.
 
-**CONS:**
+**TODO:**
 
 * DAL still coupled to business logic given that mongoose objects are returned from DAO functions to service functions.
 * Router and controller could be spit up since they are not the same thing.
@@ -61,7 +61,7 @@ Check v0/simple-api branch.
 > - DB Model (connects to DB)
 >
 
-**PROS:**
+**CHANGES:**
 
 * Same architecture but decoupling layers even further
     * Validation decoupled from Router (runs in business loigc layer)
@@ -70,8 +70,47 @@ Check v0/simple-api branch.
     * Added DI (dependency injection)
     * Business logic is completely decoupled now
 
-**CONS:**
+**TODO:**
 
-* 
+* Hexagonal architecture could be clearer
+* No test doubles yet
+* Dependencies created in Controller
 
 ## V3 - Hexagonal Architecture (no ports)
+
+> Actors 
+> - primary/drivers (input)
+>   - WebServer/Router
+>   - Other (CLI, tests, queues (consumer), GUIs, etc)
+> - secondary/driven (connection to infrastructure)
+>   - Database (DAO, Model)
+>   - Cache
+>   - Other (3rd party APIs, queues (publish), emails, etc)
+>
+> Adapters
+> - primary/drivers (input)
+>   - Controller (connects Router to Business logic)
+> - secondary/driven (connection to infrastructure)
+>   - Repository (connencts Business logic to data, both cache and DB)
+>
+> Application/Business Logic
+> - validation logic
+> - business logic
+> - DAL integration through repository
+
+**CHANGES:**
+
+* Repository pattern handles data sync between cache and db
+* Business logic knows nothing about all that
+* Easier to change implementations and test
+* Clearer responsibilities in layers
+* Dependencies injected from Router
+* Added test doubles for unit tests (Stubs and Spies)
+* No ports due to Javascript nature means there is no actual contract and developers should be trusted to follow the concrete implementations
+
+**TODO:**
+
+* Posible improvemnets in case of increasing complexity
+    * Async writes
+    * Saga pattern
+    * Command Query Responsibility Segregation (CQRS) 

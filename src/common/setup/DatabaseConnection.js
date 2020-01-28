@@ -1,6 +1,6 @@
 'use strict'
 const mongoose = require('mongoose')
-const Logger = require('../common/Logger')
+const Logger = require('../utils/Logger')
 
 const DatabaseConnection = {
   create: async (config) => {

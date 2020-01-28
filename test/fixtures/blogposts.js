@@ -1,4 +1,4 @@
-const BlogPostModel = require('../../src/blogposts/drivers/database/BlogPostModel')
+const BlogPostModel = require('../../src/blogposts/driven/actors/BlogPostModel')
 
 module.exports = {
   blogPostsUp: async () => {

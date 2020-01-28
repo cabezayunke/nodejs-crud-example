@@ -1,10 +1,10 @@
 const HttpStatus = require('http-status-codes')
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest')
-const DatabaseConnection = require('../../src/setup/DatabaseConnection')
+const DatabaseConnection = require('../../src/common/setup/DatabaseConnection')
 const dbConfig = require('../../config/database')
-const App = require('../../src/setup/App')
-const BlogPostRouter = require('../../src/blogposts/drivers/server/BlogPostRouter')
+const App = require('../../src/common/setup/App')
+const BlogPostRouter = require('../../src/blogposts/drivers/actors/BlogPostRouter')
 const { blogPostsUp, blogPostsDown } = require('../fixtures/blogposts')
 
 describe('BlogPostRouter', () => {

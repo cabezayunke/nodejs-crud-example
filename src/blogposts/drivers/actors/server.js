@@ -1,6 +1,6 @@
-const App = require('../../../setup/App')
-const DatabaseConnection = require('../../../setup/DatabaseConnection')
-const Logger = require('../../../common/Logger')
+const App = require('../../../common/setup/App')
+const DatabaseConnection = require('../../../common/setup/DatabaseConnection')
+const Logger = require('../../../common/utils/Logger')
 const BlogPostRouter = require('./BlogPostRouter')
 
 // db connection

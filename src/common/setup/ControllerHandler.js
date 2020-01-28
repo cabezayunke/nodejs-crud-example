@@ -1,7 +1,7 @@
 const _isNumber = require('lodash/fp/isNumber')
 const _isArray = require('lodash/fp/isArray')
-const Logger = require('../common/Logger')
-const ApiError = require('../common/ApiError')
+const Logger = require('../utils/Logger')
+const ApiError = require('../utils/ApiError')
 
 exports.useController = async (context, controllerFn) => {
   context.data = { ...context.request.body, ...context.params, ...context.query }

@@ -1,1 +1,1 @@
-require('./blogposts/drivers/server/server')
+require('./blogposts/drivers/actors/server')
