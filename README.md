@@ -29,7 +29,7 @@ Check v0/simple-api branch.
 >
 > Service
 > - business logic
-> - calls DAL
+> - calls DAL and works with DB Model
 >
 > Data Access Layer
 > - DAO (Data Access Object, uses DB Model)
@@ -48,4 +48,30 @@ Check v0/simple-api branch.
 
 ## V2 - Simplified Hexagonal Architecture
 
-## V3 - Hexagonal Architecture
+> Router
+> - calls controller (same file)
+>
+> Service
+> - validation logic
+> - business logic
+> - calls injected DAO and works with plain objects
+>
+> Data Access Layer
+> - DAO (Data Access Object, uses DB Model and returns plain object to business logic layer)
+> - DB Model (connects to DB)
+>
+
+**PROS:**
+
+* Same architecture but decoupling layers even further
+    * Validation decoupled from Router (runs in business loigc layer)
+    * Validation logic can be tested in isolation
+    * DB Model decoupled from business logic (DAO functions now return plain objects)
+    * Added DI (dependency injection)
+    * Business logic is completely decoupled now
+
+**CONS:**
+
+* 
+
+## V3 - Hexagonal Architecture (no ports)
