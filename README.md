@@ -110,7 +110,7 @@ Check v0/simple-api branch.
 
 **TODO:**
 
-* Posible improvemnets in case of increasing complexity
+* Possible improvements in case of increasing complexity
     * Async writes
     * Saga pattern
     * Command Query Responsibility Segregation (CQRS) 
