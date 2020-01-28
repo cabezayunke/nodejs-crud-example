@@ -21,12 +21,12 @@ describe('BlogPostRouter', () => {
   })
   afterEach(async () => expect.hasAssertions())
 
-  test.only('should throw not found error when trying to fetch blog post that does not exist', async () => {
+  test('should throw not found error when trying to fetch blog post that does not exist', async () => {
     const res = await request.get('/api/v1/blogposts/1')
     expect(res.status).toEqual(HttpStatus.NOT_FOUND)
   })
   test('should return draft blog post if exists', async () => {
-    const res = await request.get(`/api/v1/blogposts/${testData.blogPost._id}`)
+    const res = await request.get(`/api/v1/blogposts/${testData.blogPost.id}`)
     expect(res.body.title).toEqual(testData.blogPost.title)
     expect(res.body.body).toEqual(testData.blogPost.body)
   })
@@ -55,28 +55,28 @@ describe('BlogPostRouter', () => {
   test('should update a blog post with a valid title', async () => {
     const title = 'this is my UPDATED title'
     const body = testData.blogPost.body
-    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost._id}`).send({
+    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost.id}`).send({
       title,
       body,
     })
-    expect(updated.body._id).toEqual(testData.blogPost._id)
+    expect(updated.body.id).toEqual(testData.blogPost.id)
     expect(updated.body.title).toEqual(title)
     expect(updated.body.body).toEqual(body)
   })
   test('should update a blog post with a valid body', async () => {
     const title = testData.blogPost.title
     const body = 'this is my UPDATED body'
-    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost._id}`).send({
+    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost.id}`).send({
       title,
       body,
     })
-    expect(updated.body._id).toEqual(testData.blogPost._id)
+    expect(updated.body.id).toEqual(testData.blogPost.id)
     expect(updated.body.title).toEqual(title)
     expect(updated.body.body).toEqual(body)
   })
   test('should not update blog post with empty title', async () => {
     const body = testData.blogPost.body
-    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost._id}`).send({
+    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost.id}`).send({
       title: '',
       body,
     })
@@ -84,7 +84,7 @@ describe('BlogPostRouter', () => {
   })
   test('should not update blog post with invalid title', async () => {
     const body = testData.blogPost.body
-    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost._id}`).send({
+    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost.id}`).send({
       title: 3256, // this is invalid
       body,
     })
@@ -92,14 +92,14 @@ describe('BlogPostRouter', () => {
   })
   test('should not update blog post with title with less than 10 chars', async () => {
     const body = testData.blogPost.body
-    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost._id}`).send({
+    const updated = await request.put(`/api/v1/blogposts/${testData.blogPost.id}`).send({
       title: 'invalid',
       body,
     })
     expect(updated.status).toEqual(HttpStatus.BAD_REQUEST)
   })
   test('should delete blog post if exists', async () => {
-    const deleted = await request.delete(`/api/v1/blogposts/${testData.blogPost._id}`)
+    const deleted = await request.delete(`/api/v1/blogposts/${testData.blogPost.id}`)
     expect(deleted.status).toEqual(HttpStatus.NO_CONTENT)
   })
   test('should throw not found error when trying to delete a blog post that does not exist', async () => {

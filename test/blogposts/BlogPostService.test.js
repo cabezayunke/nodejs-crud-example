@@ -1,18 +1,18 @@
 const BlogPostService = require('../../src/blogposts/business/BlogPostService')
 const BlogPostValidator = require('../../src/blogposts/business/BlogPostValidator')
 const BlogPostValidatorSpy = require('../helpers/BlogPostValidatorSpy')
-const BlogPostDAOStub = require('../helpers/BlogPostDAOStub')
+const BlogPostRepositoryStub = require('../helpers/BlogPostRepositoryStub')
 
 
 describe('BlogPostService', () => {
   let service, realValidatorService
   beforeAll(async () => {
     service = BlogPostService({
-      dao: BlogPostDAOStub,
+      repository: BlogPostRepositoryStub,
       validator: BlogPostValidatorSpy,
     })
     realValidatorService = BlogPostService({
-      dao: BlogPostDAOStub,
+      repository: BlogPostRepositoryStub,
       validator: BlogPostValidator,
     })
   })
@@ -27,8 +27,8 @@ describe('BlogPostService', () => {
   test('should return draft blog post if exists', async () => {
     const blogPost = { title: 'fake title', body: 'fake body', status: 'draft' }
     const fakeService = BlogPostService({
-      dao: {
-        getBlogPost: async (id) => blogPost,
+      repository: {
+        find: async (id) => blogPost,
       },
       validator: BlogPostValidatorSpy,
     })
@@ -39,8 +39,8 @@ describe('BlogPostService', () => {
   test('should create a blog post with valid data', async () => {
     const blogPost = { title: 'fake title', body: 'fake body', status: 'draft' }
     const fakeService = BlogPostService({
-      dao: {
-        createBlogPost: async (id) => blogPost,
+      repository: {
+        save: async (id) => blogPost,
       },
       validator: BlogPostValidatorSpy,
     })
@@ -68,7 +68,7 @@ describe('BlogPostService', () => {
       id: 'myId',
     })).resolves.toEqual({
       ...data,
-      _id: 'myId',
+      id: 'myId',
     })
   })
 
@@ -95,8 +95,8 @@ describe('BlogPostService', () => {
   })
   test('should delete blog post if exists', async () => {
     const fakeService = BlogPostService({
-      dao: {
-        deleteBlogPost: async (id) => true,
+      repository: {
+        remove: async (id) => true,
       },
       validator: BlogPostValidatorSpy,
     })
@@ -106,8 +106,8 @@ describe('BlogPostService', () => {
   })
   test('should throw not found error when trying to delete a blog post that does not exist', async () => {
     const fakeService = BlogPostService({
-      dao: {
-        deleteBlogPost: async (id) => false,
+      repository: {
+        remove: async (id) => false,
       },
       validator: BlogPostValidatorSpy,
     })

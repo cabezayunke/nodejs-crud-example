@@ -8,7 +8,10 @@ module.exports = {
       })
       await blogPost.save()
       return {
-        blogPost,
+        blogPost: {
+          ...blogPost.toObject(),
+          id: blogPost._id
+        },
       }
   },
   blogPostsDown: async () => {

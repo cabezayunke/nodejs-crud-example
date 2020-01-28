@@ -6,7 +6,7 @@ const BlogPostCache = {
     cache[blogPost.id] = blogPost
     return true
   },
-  remove: async (id, blogPost) => {
+  remove: async (blogPost) => {
     cache[blogPost.id] = undefined
     return true
   }

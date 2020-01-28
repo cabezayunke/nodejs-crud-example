@@ -5,7 +5,9 @@ const findBuilder = ({ dao, cache }) => async (id) => {
     return cachedItem
   }
   const dbItem = await dao.getBlogPost(id)
-  cache.save(dbItem)
+  if(dbItem) {
+    cache.save(dbItem)
+  }
   return dbItem
 }
 const saveBuilder = ({ dao, cache }) => async (blogPost) => {
