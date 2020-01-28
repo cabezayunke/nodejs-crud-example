@@ -64,11 +64,11 @@ Check v0/simple-api branch.
 **CHANGES:**
 
 * Same architecture but decoupling layers even further
-    * Validation decoupled from Router (runs in business loigc layer)
+    * Validation decoupled from Router (runs in business logic layer)
     * Validation logic can be tested in isolation
     * DB Model decoupled from business logic (DAO functions now return plain objects)
     * Added DI (dependency injection)
-    * Business logic is completely decoupled now
+    * Business logic is loosely decoupled now and components should be easily replaced
 
 **TODO:**
 
@@ -91,7 +91,7 @@ Check v0/simple-api branch.
 > - primary/drivers (input)
 >   - Controller (connects Router to Business logic)
 > - secondary/driven (connection to infrastructure)
->   - Repository (connencts Business logic to data, both cache and DB)
+>   - Repository (connects Business logic to data)
 >
 > Application/Business Logic
 > - validation logic
@@ -101,12 +101,11 @@ Check v0/simple-api branch.
 **CHANGES:**
 
 * Repository pattern handles data sync between cache and db
-* Business logic knows nothing about all that
+* Business logic knows nothing about how or where the data is stored
 * Easier to change implementations and test
 * Clearer responsibilities in layers
 * Dependencies injected from Router
 * Added test doubles for unit tests (Stubs and Spies)
-* No ports due to Javascript nature means there is no actual contract and developers should be trusted to follow the concrete implementations
 
 **TODO:**
 
@@ -114,3 +113,5 @@ Check v0/simple-api branch.
     * Async writes
     * Saga pattern
     * Command Query Responsibility Segregation (CQRS) 
+
+NOTE: No ports due to Javascript nature means there is no actual contract and developers should be trusted to follow the concrete implementations
