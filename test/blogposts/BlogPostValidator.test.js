@@ -36,7 +36,7 @@ describe('BlogPostValidator', () => {
       body: [],
     })).toThrow('ValidationError')
   })
-  test('should not throw error with valid data', async () => {
+  test('should not throw error with valid adapters', async () => {
     expect(BlogPostValidator.validateBlogPostFields({
       title: 'valid title',
       body: 'valid body'

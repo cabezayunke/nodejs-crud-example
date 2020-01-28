@@ -36,7 +36,7 @@ describe('BlogPostService', () => {
     expect(BlogPostValidatorSpy.hasBeenCalled('validateBlogPostId')).toEqual(true)
     expect(BlogPostValidatorSpy.getFnInvocationCount('validateBlogPostId')).toEqual(1)
   })
-  test('should create a blog post with valid data', async () => {
+  test('should create a blog post with valid adapters', async () => {
     const blogPost = { title: 'fake title', body: 'fake body', status: 'draft' }
     const fakeService = BlogPostService({
       repository: {
@@ -58,7 +58,7 @@ describe('BlogPostService', () => {
       title: 'fake title yeah',
     })).rejects.toThrow('ValidationError')
   })
-  test('should update a blog post with a valid data', async () => {
+  test('should update a blog post with a valid adapters', async () => {
     const data = {
       title: 'this is my updated title',
       body: 'this is my updated body'

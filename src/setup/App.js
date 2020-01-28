@@ -2,7 +2,7 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const cors = require('@koa/cors')
 const helmet = require('koa-helmet')
-const { handleError } = require('./ControllerUtils')
+const { handleError } = require('./ControllerHandler')
 
 const App = (router) => {
   const app = new Koa()

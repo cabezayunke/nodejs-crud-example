@@ -1,8 +1,8 @@
 'use strict'
 const mongoose = require('mongoose')
-const Logger = require('./Logger')
+const Logger = require('../common/Logger')
 
-const MongoConnection = {
+const DatabaseConnection = {
   create: async (config) => {
     const db = mongoose.connection
     const tags = { tags: 'init,mongodb' }
@@ -46,4 +46,4 @@ const MongoConnection = {
     )
   }
 }
-module.exports = MongoConnection
+module.exports = DatabaseConnection

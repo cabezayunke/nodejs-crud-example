@@ -1,16 +1,16 @@
 const HttpStatus = require('http-status-codes')
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest')
-const MongoConnection = require('../../src/common/MongoConnection')
+const DatabaseConnection = require('../../src/setup/DatabaseConnection')
 const dbConfig = require('../../config/database')
-const App = require('../../src/common/App')
-const BlogPostRouter = require('../../src/blogposts/http/BlogPostRouter')
+const App = require('../../src/setup/App')
+const BlogPostRouter = require('../../src/blogposts/drivers/server/BlogPostRouter')
 const { blogPostsUp, blogPostsDown } = require('../fixtures/blogposts')
 
 describe('BlogPostRouter', () => {
   let app, request, testData, db;
   beforeAll(async () => {
-    db = await MongoConnection.create(dbConfig)
+    db = await DatabaseConnection.create(dbConfig)
     app = App(BlogPostRouter)
     request = supertest(app.listen())
     testData = await blogPostsUp()
@@ -30,7 +30,7 @@ describe('BlogPostRouter', () => {
     expect(res.body.title).toEqual(testData.blogPost.title)
     expect(res.body.body).toEqual(testData.blogPost.body)
   })
-  test('should create a blog post with valid data', async () => {
+  test('should create a blog post with valid adapters', async () => {
     const title = 'this is my custom title'
     const body = 'this is my custom body'
     const res = await request.post(`/api/v1/blogposts`).send({

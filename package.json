@@ -2,7 +2,7 @@
   "name": "nodejs-crud-example",
   "version": "1.0.0",
   "description": "Simple CRUD REST API using NodeJS",
-  "main": "src/server.js",
+  "main": "src/blogposts/drivers/server/server.js",
   "directories": {
     "test": "test",
     "source": "src"
@@ -12,8 +12,8 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "start": "node src/server.js",
-    "start:dev": "nodemon src/server.js",
+    "start": "node src/blogposts/drivers/server/server.js",
+    "start:dev": "nodemon src/blogposts/drivers/server/server.js",
     "eslint-check": "node_modules/.bin/eslint --print-config . | eslint-config-prettier-check",
     "eslint": "node_modules/.bin/eslint src/",
     "prettier": "prettier --config .prettierrc --write '**/*.js'",
@@ -36,6 +36,9 @@
   "bugs": {
     "url": "https://github.com/cabezayunke/nodejs-crud-example/issues"
   },
+  "bin": {
+    "blogposts": "./src/blogposts/drivers/cli/cli.js"
+  },
   "homepage": "https://github.com/cabezayunke/nodejs-crud-example#readme",
   "dependencies": {
     "@babel/runtime": "7.8.3",
@@ -49,6 +52,7 @@
     "koa-router": "8.0.6",
     "koa2-joi-validate": "0.5.0",
     "lodash": "4.17.15",
+    "minimist": "^1.2.0",
     "mongoose": "5.8.9",
     "uuid": "3.4.0",
     "winston": "3.2.1"

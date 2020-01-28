@@ -14,7 +14,7 @@ services:
       - 27017:27017
     volumes:
       - ./config/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
-      - mongo-blogposts-volume:/data/db
+      - mongo-blogposts-volume:/adapters/db
     command: mongod --bind_ip_all
 
 volumes:

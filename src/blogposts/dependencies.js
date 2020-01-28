@@ -1,7 +1,7 @@
-const BlogPostDAO = require('./data/BlogPostDAO')
-const BlogPostCache = require('./data/BlogPostCache')
+const BlogPostDAO = require('./drivers/database/BlogPostDAO')
+const BlogPostCache = require('./drivers/cache/BlogPostCache')
 const BlogPostValidator = require('./business/BlogPostValidator')
-const BlogPostRepository = require('./business/BlogPostRepository')({
+const BlogPostRepository = require('./adapters/BlogPostRepository')({
   dao: BlogPostDAO,
   cache: BlogPostCache,
 })

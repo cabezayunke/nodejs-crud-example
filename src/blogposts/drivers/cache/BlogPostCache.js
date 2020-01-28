@@ -1,5 +1,8 @@
 const cache = {}
 
+// TODO:
+// replace this with actual cache implementation
+// and use this as CacheStub in tests
 const BlogPostCache = {
   find: async (id) => cache[id],
   save: async (blogPost) => {
