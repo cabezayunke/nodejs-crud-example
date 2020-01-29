@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
+/* eslint-disable no-process-exit */
 const minimist = require('minimist')
 const HttpStatus = require('http-status-codes')
 const { controller } = require('./CompositionRoot')
@@ -21,12 +22,16 @@ if (args.find || args.f) {
 switch (cmd) {
   case 'version':
     console.log('1.0')
-    break;
+    process.exit(0)
   case 'help':
-    console.log('Use REST API until CLI has been implemented please')
-    break;
+    console.log('--------------')
+    console.log('help|h - sow this help')
+    console.log('version|v - show version')
+    console.log('find|f - find a blog post, ie: blogposts -f 1')
+    console.log('--------------')
+    process.exit(0)
   case 'find':
-    controller.getBlogPost({ data: { id: args.id }})
+    controller.getBlogPost({ data: { id: args.f }})
     .then((data) => {
         console.log('------------------')
         console.log('Blog post found:')
@@ -35,7 +40,7 @@ switch (cmd) {
         console.log(`Title: ${data.title}`);
         console.log(`Body: ${data.body}`);
         console.log('------------------')
-        return data
+        return process.exit(0)
     })
     .catch((err) => {
       switch(err.status) {
@@ -43,18 +48,19 @@ switch (cmd) {
           console.warn('------------------')
           console.warn('Blog post NOT found')
           console.warn('------------------')
-          break;
+          break
         case HttpStatus.BAD_REQUEST:
           console.warn('------------------')
           console.warn(`Invalid params: ${err.message}`)
           console.warn('------------------')
-          break;
+          break
         default:
           console.error(err.message)
       }
+      process.exit(err.status || 1)
     })
     break;
   default:
     console.error(`"${cmd}" is not a valid command!`);
-    break;
+    process.exit(2)
 }
