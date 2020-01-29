@@ -7,7 +7,7 @@ const createBlogPostService = require('../../business/BlogPostService')
 const createBlogPostController = require('../../drivers/adapters/BlogPostController')
 
 // db connection
-DatabaseConnection.create(require('../../../../config/database'))
+const db = DatabaseConnection.create(require('../../../../config/database'))
 
 // dependencies
 const repository = createBlogPostRepository({
@@ -24,4 +24,5 @@ const controller = createBlogPostController({
 
 module.exports = {
   controller,
+  db,
 }
