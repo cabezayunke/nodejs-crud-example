@@ -15,6 +15,6 @@ module.exports = {
       }
   },
   blogPostsDown: async () => {
-    return BlogPostModel.remove({})
+    return BlogPostModel.deleteMany({})
   },
 }

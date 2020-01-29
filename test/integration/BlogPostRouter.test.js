@@ -3,13 +3,13 @@ const HttpStatus = require('http-status-codes')
 const supertest = require('supertest')
 const App = require('../../src/common/setup/App')
 const createBlogPostRouter = require('../../src/blogposts/drivers/actors/BlogPostRouter')
-const dependencies = require('../../src/blogposts/drivers/actors/CompositionRoot')
+const { db, controller } = require('../../src/blogposts/drivers/actors/CompositionRoot')
 const { blogPostsUp, blogPostsDown } = require('../fixtures/blogposts')
 
 describe('BlogPostRouter', () => {
-  let app, request, testData, db;
+  let app, request, testData
   beforeAll(async () => {
-    app = App(createBlogPostRouter(dependencies))
+    app = App(createBlogPostRouter({ controller }))
     request = supertest(app.listen())
     testData = await blogPostsUp()
   })

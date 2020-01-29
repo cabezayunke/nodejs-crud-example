@@ -26,7 +26,7 @@ const BlogPostDAO = {
     if(!obj) {
       return false;
     }
-    await obj.remove()
+    await BlogPostModel.deleteOne({ _id: id })
     return true
   },
 }
