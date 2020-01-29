@@ -39,10 +39,10 @@ const deleteBlogPostBuilder = ({ repository, validator }) => async (id) => {
   return true;
 }
 
-const BlogPostService = (dependencies) => ({
+const createBlogPostService = (dependencies) => ({
   getBlogPost: getBlogPostBuilder(dependencies),
   createBlogPost: createBlogPostBuilder(dependencies),
   updateBlogPost: updateBlogPostBuilder(dependencies),
   deleteBlogPost: deleteBlogPostBuilder(dependencies),
 })
-module.exports = BlogPostService
+module.exports = createBlogPostService

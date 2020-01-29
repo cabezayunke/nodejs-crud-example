@@ -22,9 +22,9 @@ const removeBuilder = ({ dao, cache }) => async (id) => {
   cache.remove(id)
   return dao.deleteBlogPost(id)
 }
-const BlogPostRepository = (dependencies) => ({
+const createBlogPostRepository = (dependencies) => ({
   find: findBuilder(dependencies),
   save: saveBuilder(dependencies),
   remove: removeBuilder(dependencies),
 })
-module.exports = BlogPostRepository
+module.exports = createBlogPostRepository

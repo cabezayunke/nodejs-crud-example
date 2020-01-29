@@ -1,5 +1,5 @@
 
-const blogPostControllerBuilder = ({ service }) => ({
+const createBlogPostController = ({ service }) => ({
     getBlogPost: ({ data: { id }}) => service.getBlogPost(id),
     createBlogPost: ({ data }) => service.createBlogPost(data),
     updateBlogPost: ({ data }) => service.updateBlogPost(data),
@@ -9,4 +9,4 @@ const blogPostControllerBuilder = ({ service }) => ({
     },
 })
 
-module.exports = (dependencies) => blogPostControllerBuilder(dependencies)
+module.exports = createBlogPostController

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Simple CRUD REST API using NodeJS",
   "main": "src/blogposts/drivers/actors/server.js",
+  "bin": {
+    "blogposts": "src/blogposts/drivers/actors/cli.js"
+  },
   "directories": {
     "test": "test",
     "source": "src"
@@ -35,9 +38,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cabezayunke/nodejs-crud-example/issues"
-  },
-  "bin": {
-    "blogposts": "src/blogposts/drivers/actors/cli.js"
   },
   "homepage": "https://github.com/cabezayunke/nodejs-crud-example#readme",
   "dependencies": {
