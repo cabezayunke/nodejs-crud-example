@@ -27,7 +27,7 @@
       ]
     }
   },
-  "DAO": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/cabezayunke/nodejs-crud-example.git"
   },
